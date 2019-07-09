@@ -1,0 +1,535 @@
+2019-07-07 09:58:18,663 - taskassignor - INFO - metric | msg = new_task | status=finish | assignor = 1
+2019-07-07 10:35:27,948 - taskassignor - ERROR - metric | msg = new_task | status=unfinish | error = Invalid control character at: line 6 column 28 (char 126)
+Traceback (most recent call last):
+  File "D:\coder\taskAssignor\taskassignor\views.py", line 35, in new_task
+    all_info = json.loads(request.get_data(as_text=True))
+  File "c:\users\loktar\appdata\local\programs\python\python36\Lib\json\__init__.py", line 354, in loads
+    return _default_decoder.decode(s)
+  File "c:\users\loktar\appdata\local\programs\python\python36\Lib\json\decoder.py", line 339, in decode
+    obj, end = self.raw_decode(s, idx=_w(s, 0).end())
+  File "c:\users\loktar\appdata\local\programs\python\python36\Lib\json\decoder.py", line 355, in raw_decode
+    obj, end = self.scan_once(s, idx)
+json.decoder.JSONDecodeError: Invalid control character at: line 6 column 28 (char 126)
+2019-07-07 10:41:12,308 - taskassignor - ERROR - metric | msg = new_task | status=unfinish | input =     {
+        "assignor_id": 1,
+        "task_info": [
+            {
+                "id": 1,
+                "info": "aa
+            }
+        ]
+    } | Invalid control character at: line 6 column 28 (char 126)
+Traceback (most recent call last):
+  File "D:\coder\taskAssignor\taskassignor\views.py", line 36, in new_task
+    all_info = json.loads(all_info)
+  File "c:\users\loktar\appdata\local\programs\python\python36\Lib\json\__init__.py", line 354, in loads
+    return _default_decoder.decode(s)
+  File "c:\users\loktar\appdata\local\programs\python\python36\Lib\json\decoder.py", line 339, in decode
+    obj, end = self.raw_decode(s, idx=_w(s, 0).end())
+  File "c:\users\loktar\appdata\local\programs\python\python36\Lib\json\decoder.py", line 355, in raw_decode
+    obj, end = self.scan_once(s, idx)
+json.decoder.JSONDecodeError: Invalid control character at: line 6 column 28 (char 126)
+2019-07-07 11:54:21,306 - taskassignor - ERROR - new_task_exception|input =     {
+        "assignor_id": 1,
+        "task_info": [
+            {
+                "id": 1,
+                "info": "aa
+            }
+        ]
+    }|exception=Invalid control character at: line 6 column 28 (char 126)
+Traceback (most recent call last):
+  File "D:\coder\taskAssignor\taskassignor\views.py", line 36, in new_task
+    all_info = json.loads(all_info)
+  File "c:\users\loktar\appdata\local\programs\python\python36\Lib\json\__init__.py", line 354, in loads
+    return _default_decoder.decode(s)
+  File "c:\users\loktar\appdata\local\programs\python\python36\Lib\json\decoder.py", line 339, in decode
+    obj, end = self.raw_decode(s, idx=_w(s, 0).end())
+  File "c:\users\loktar\appdata\local\programs\python\python36\Lib\json\decoder.py", line 355, in raw_decode
+    obj, end = self.scan_once(s, idx)
+json.decoder.JSONDecodeError: Invalid control character at: line 6 column 28 (char 126)
+2019-07-07 11:55:07,627 - taskassignor - ERROR - new_task_exception|input = {'assignor_id': 1, 'task_info': [{'id': 1, 'info': 'aa'}]}|exception=(sqlite3.OperationalError) no such table: task
+[SQL: INSERT INTO task (batch_id, id, info, checked_info, status, checker, time) VALUES (?, ?, ?, ?, ?, ?, ?)]
+[parameters: ('122717a021c116bf50f69d4019dd7aed1045b354', 1, 'aa', None, 'unchecked', None, None)]
+(Background on this error at: http://sqlalche.me/e/e3q8)
+Traceback (most recent call last):
+  File "C:\Users\loktar\.virtualenvs\taskAssignor-ItalQ3UR\lib\site-packages\sqlalchemy\engine\base.py", line 1244, in _execute_context
+    cursor, statement, parameters, context
+  File "C:\Users\loktar\.virtualenvs\taskAssignor-ItalQ3UR\lib\site-packages\sqlalchemy\engine\default.py", line 550, in do_execute
+    cursor.execute(statement, parameters)
+sqlite3.OperationalError: no such table: task
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "D:\coder\taskAssignor\taskassignor\views.py", line 43, in new_task
+    db.session.commit()
+  File "C:\Users\loktar\.virtualenvs\taskAssignor-ItalQ3UR\lib\site-packages\sqlalchemy\orm\scoping.py", line 162, in do
+    return getattr(self.registry(), name)(*args, **kwargs)
+  File "C:\Users\loktar\.virtualenvs\taskAssignor-ItalQ3UR\lib\site-packages\sqlalchemy\orm\session.py", line 1027, in commit
+    self.transaction.commit()
+  File "C:\Users\loktar\.virtualenvs\taskAssignor-ItalQ3UR\lib\site-packages\sqlalchemy\orm\session.py", line 494, in commit
+    self._prepare_impl()
+  File "C:\Users\loktar\.virtualenvs\taskAssignor-ItalQ3UR\lib\site-packages\sqlalchemy\orm\session.py", line 473, in _prepare_impl
+    self.session.flush()
+  File "C:\Users\loktar\.virtualenvs\taskAssignor-ItalQ3UR\lib\site-packages\sqlalchemy\orm\session.py", line 2459, in flush
+    self._flush(objects)
+  File "C:\Users\loktar\.virtualenvs\taskAssignor-ItalQ3UR\lib\site-packages\sqlalchemy\orm\session.py", line 2597, in _flush
+    transaction.rollback(_capture_exception=True)
+  File "C:\Users\loktar\.virtualenvs\taskAssignor-ItalQ3UR\lib\site-packages\sqlalchemy\util\langhelpers.py", line 68, in __exit__
+    compat.reraise(exc_type, exc_value, exc_tb)
+  File "C:\Users\loktar\.virtualenvs\taskAssignor-ItalQ3UR\lib\site-packages\sqlalchemy\util\compat.py", line 154, in reraise
+    raise value
+  File "C:\Users\loktar\.virtualenvs\taskAssignor-ItalQ3UR\lib\site-packages\sqlalchemy\orm\session.py", line 2557, in _flush
+    flush_context.execute()
+  File "C:\Users\loktar\.virtualenvs\taskAssignor-ItalQ3UR\lib\site-packages\sqlalchemy\orm\unitofwork.py", line 422, in execute
+    rec.execute(self)
+  File "C:\Users\loktar\.virtualenvs\taskAssignor-ItalQ3UR\lib\site-packages\sqlalchemy\orm\unitofwork.py", line 589, in execute
+    uow,
+  File "C:\Users\loktar\.virtualenvs\taskAssignor-ItalQ3UR\lib\site-packages\sqlalchemy\orm\persistence.py", line 245, in save_obj
+    insert,
+  File "C:\Users\loktar\.virtualenvs\taskAssignor-ItalQ3UR\lib\site-packages\sqlalchemy\orm\persistence.py", line 1138, in _emit_insert_statements
+    statement, params
+  File "C:\Users\loktar\.virtualenvs\taskAssignor-ItalQ3UR\lib\site-packages\sqlalchemy\engine\base.py", line 988, in execute
+    return meth(self, multiparams, params)
+  File "C:\Users\loktar\.virtualenvs\taskAssignor-ItalQ3UR\lib\site-packages\sqlalchemy\sql\elements.py", line 287, in _execute_on_connection
+    return connection._execute_clauseelement(self, multiparams, params)
+  File "C:\Users\loktar\.virtualenvs\taskAssignor-ItalQ3UR\lib\site-packages\sqlalchemy\engine\base.py", line 1107, in _execute_clauseelement
+    distilled_params,
+  File "C:\Users\loktar\.virtualenvs\taskAssignor-ItalQ3UR\lib\site-packages\sqlalchemy\engine\base.py", line 1248, in _execute_context
+    e, statement, parameters, cursor, context
+  File "C:\Users\loktar\.virtualenvs\taskAssignor-ItalQ3UR\lib\site-packages\sqlalchemy\engine\base.py", line 1466, in _handle_dbapi_exception
+    util.raise_from_cause(sqlalchemy_exception, exc_info)
+  File "C:\Users\loktar\.virtualenvs\taskAssignor-ItalQ3UR\lib\site-packages\sqlalchemy\util\compat.py", line 399, in raise_from_cause
+    reraise(type(exception), exception, tb=exc_tb, cause=cause)
+  File "C:\Users\loktar\.virtualenvs\taskAssignor-ItalQ3UR\lib\site-packages\sqlalchemy\util\compat.py", line 153, in reraise
+    raise value.with_traceback(tb)
+  File "C:\Users\loktar\.virtualenvs\taskAssignor-ItalQ3UR\lib\site-packages\sqlalchemy\engine\base.py", line 1244, in _execute_context
+    cursor, statement, parameters, context
+  File "C:\Users\loktar\.virtualenvs\taskAssignor-ItalQ3UR\lib\site-packages\sqlalchemy\engine\default.py", line 550, in do_execute
+    cursor.execute(statement, parameters)
+sqlalchemy.exc.OperationalError: (sqlite3.OperationalError) no such table: task
+[SQL: INSERT INTO task (batch_id, id, info, checked_info, status, checker, time) VALUES (?, ?, ?, ?, ?, ?, ?)]
+[parameters: ('122717a021c116bf50f69d4019dd7aed1045b354', 1, 'aa', None, 'unchecked', None, None)]
+(Background on this error at: http://sqlalche.me/e/e3q8)
+2019-07-07 11:56:00,022 - taskassignor - INFO - new_task_success|assignor_id=1|batch_id=1aadb660d1c3e5d2ebc05945c93adfe44fc09eb0
+2019-07-07 12:34:33,340 - taskassignor - ERROR - new_task_WrongInput|input = {'checker_id': 3}|exception=(sqlite3.OperationalError) no such table: task
+[SQL: SELECT task.r_id AS task_r_id, task.batch_id AS task_batch_id, task.id AS task_id, task.info AS task_info, task.checked_info AS task_checked_info, task.status AS task_status, task.checker AS task_checker, task.time AS task_time 
+FROM task 
+WHERE task.checker IS NULL]
+(Background on this error at: http://sqlalche.me/e/e3q8)
+Traceback (most recent call last):
+  File "C:\Users\loktar\.virtualenvs\taskAssignor-ItalQ3UR\lib\site-packages\sqlalchemy\engine\base.py", line 1244, in _execute_context
+    cursor, statement, parameters, context
+  File "C:\Users\loktar\.virtualenvs\taskAssignor-ItalQ3UR\lib\site-packages\sqlalchemy\engine\default.py", line 550, in do_execute
+    cursor.execute(statement, parameters)
+sqlite3.OperationalError: no such table: task
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "D:\coder\taskAssignor\taskassignor\views.py", line 80, in take_task
+    tasks = Task.query.filter(Task.checker==None).all()
+  File "C:\Users\loktar\.virtualenvs\taskAssignor-ItalQ3UR\lib\site-packages\sqlalchemy\orm\query.py", line 3168, in all
+    return list(self)
+  File "C:\Users\loktar\.virtualenvs\taskAssignor-ItalQ3UR\lib\site-packages\sqlalchemy\orm\query.py", line 3324, in __iter__
+    return self._execute_and_instances(context)
+  File "C:\Users\loktar\.virtualenvs\taskAssignor-ItalQ3UR\lib\site-packages\sqlalchemy\orm\query.py", line 3349, in _execute_and_instances
+    result = conn.execute(querycontext.statement, self._params)
+  File "C:\Users\loktar\.virtualenvs\taskAssignor-ItalQ3UR\lib\site-packages\sqlalchemy\engine\base.py", line 988, in execute
+    return meth(self, multiparams, params)
+  File "C:\Users\loktar\.virtualenvs\taskAssignor-ItalQ3UR\lib\site-packages\sqlalchemy\sql\elements.py", line 287, in _execute_on_connection
+    return connection._execute_clauseelement(self, multiparams, params)
+  File "C:\Users\loktar\.virtualenvs\taskAssignor-ItalQ3UR\lib\site-packages\sqlalchemy\engine\base.py", line 1107, in _execute_clauseelement
+    distilled_params,
+  File "C:\Users\loktar\.virtualenvs\taskAssignor-ItalQ3UR\lib\site-packages\sqlalchemy\engine\base.py", line 1248, in _execute_context
+    e, statement, parameters, cursor, context
+  File "C:\Users\loktar\.virtualenvs\taskAssignor-ItalQ3UR\lib\site-packages\sqlalchemy\engine\base.py", line 1466, in _handle_dbapi_exception
+    util.raise_from_cause(sqlalchemy_exception, exc_info)
+  File "C:\Users\loktar\.virtualenvs\taskAssignor-ItalQ3UR\lib\site-packages\sqlalchemy\util\compat.py", line 399, in raise_from_cause
+    reraise(type(exception), exception, tb=exc_tb, cause=cause)
+  File "C:\Users\loktar\.virtualenvs\taskAssignor-ItalQ3UR\lib\site-packages\sqlalchemy\util\compat.py", line 153, in reraise
+    raise value.with_traceback(tb)
+  File "C:\Users\loktar\.virtualenvs\taskAssignor-ItalQ3UR\lib\site-packages\sqlalchemy\engine\base.py", line 1244, in _execute_context
+    cursor, statement, parameters, context
+  File "C:\Users\loktar\.virtualenvs\taskAssignor-ItalQ3UR\lib\site-packages\sqlalchemy\engine\default.py", line 550, in do_execute
+    cursor.execute(statement, parameters)
+sqlalchemy.exc.OperationalError: (sqlite3.OperationalError) no such table: task
+[SQL: SELECT task.r_id AS task_r_id, task.batch_id AS task_batch_id, task.id AS task_id, task.info AS task_info, task.checked_info AS task_checked_info, task.status AS task_status, task.checker AS task_checker, task.time AS task_time 
+FROM task 
+WHERE task.checker IS NULL]
+(Background on this error at: http://sqlalche.me/e/e3q8)
+2019-07-07 12:35:55,983 - taskassignor - INFO - take_task_success|checker_id=3
+2019-07-07 12:37:26,734 - taskassignor - INFO - take_task_success|checker_id=3
+2019-07-07 12:37:36,051 - taskassignor - INFO - take_task_success|checker_id=3
+2019-07-07 12:37:37,222 - taskassignor - INFO - take_task_success|checker_id=3
+2019-07-07 12:37:38,175 - taskassignor - INFO - take_task_success|checker_id=3
+2019-07-07 12:37:38,886 - taskassignor - INFO - take_task_success|checker_id=3
+2019-07-07 12:37:39,621 - taskassignor - INFO - take_task_success|checker_id=3
+2019-07-07 12:37:40,435 - taskassignor - INFO - take_task_success|checker_id=3
+2019-07-07 12:37:41,391 - taskassignor - INFO - take_task_success|checker_id=3
+2019-07-07 12:37:42,112 - taskassignor - INFO - take_task_success|checker_id=3
+2019-07-07 12:37:42,872 - taskassignor - INFO - take_task_success|checker_id=3
+2019-07-07 12:37:43,767 - taskassignor - INFO - take_task_success|checker_id=3
+2019-07-07 12:37:49,042 - taskassignor - INFO - take_task_success|checker_id=3
+2019-07-07 12:37:49,976 - taskassignor - INFO - take_task_success|checker_id=3
+2019-07-07 12:37:50,825 - taskassignor - INFO - take_task_success|checker_id=3
+2019-07-07 12:38:14,739 - taskassignor - INFO - take_task_success|checker_id=3
+2019-07-07 12:38:17,934 - taskassignor - INFO - take_task_success|checker_id=3
+2019-07-07 12:38:28,990 - taskassignor - INFO - take_task_success|checker_id=4
+2019-07-08 21:42:34,513 - taskassignor.view - ERROR - new_task_exception|input = {'assignor_id': 1, 'task_info': [{'id': 1, 'info': 'aa'}]}|exception=(sqlite3.OperationalError) no such table: task
+[SQL: INSERT INTO task (batch_id, id, info, checked_info, status, checker, time) VALUES (?, ?, ?, ?, ?, ?, ?)]
+[parameters: ('ff9890a3ff381d3180b357951c98bd8e80898f4d', 1, 'aa', None, 'unchecked', None, None)]
+(Background on this error at: http://sqlalche.me/e/e3q8)
+Traceback (most recent call last):
+  File "c:\users\loktar\.virtualenvs\taskassignor-italq3ur\lib\site-packages\sqlalchemy\engine\base.py", line 1244, in _execute_context
+    cursor, statement, parameters, context
+  File "c:\users\loktar\.virtualenvs\taskassignor-italq3ur\lib\site-packages\sqlalchemy\engine\default.py", line 550, in do_execute
+    cursor.execute(statement, parameters)
+sqlite3.OperationalError: no such table: task
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "D:\coder\taskAssignor\taskassignor\view.py", line 55, in new_task
+    db.session.commit()
+  File "c:\users\loktar\.virtualenvs\taskassignor-italq3ur\lib\site-packages\sqlalchemy\orm\scoping.py", line 162, in do
+    return getattr(self.registry(), name)(*args, **kwargs)
+  File "c:\users\loktar\.virtualenvs\taskassignor-italq3ur\lib\site-packages\sqlalchemy\orm\session.py", line 1027, in commit
+    self.transaction.commit()
+  File "c:\users\loktar\.virtualenvs\taskassignor-italq3ur\lib\site-packages\sqlalchemy\orm\session.py", line 494, in commit
+    self._prepare_impl()
+  File "c:\users\loktar\.virtualenvs\taskassignor-italq3ur\lib\site-packages\sqlalchemy\orm\session.py", line 473, in _prepare_impl
+    self.session.flush()
+  File "c:\users\loktar\.virtualenvs\taskassignor-italq3ur\lib\site-packages\sqlalchemy\orm\session.py", line 2459, in flush
+    self._flush(objects)
+  File "c:\users\loktar\.virtualenvs\taskassignor-italq3ur\lib\site-packages\sqlalchemy\orm\session.py", line 2597, in _flush
+    transaction.rollback(_capture_exception=True)
+  File "c:\users\loktar\.virtualenvs\taskassignor-italq3ur\lib\site-packages\sqlalchemy\util\langhelpers.py", line 68, in __exit__
+    compat.reraise(exc_type, exc_value, exc_tb)
+  File "c:\users\loktar\.virtualenvs\taskassignor-italq3ur\lib\site-packages\sqlalchemy\util\compat.py", line 154, in reraise
+    raise value
+  File "c:\users\loktar\.virtualenvs\taskassignor-italq3ur\lib\site-packages\sqlalchemy\orm\session.py", line 2557, in _flush
+    flush_context.execute()
+  File "c:\users\loktar\.virtualenvs\taskassignor-italq3ur\lib\site-packages\sqlalchemy\orm\unitofwork.py", line 422, in execute
+    rec.execute(self)
+  File "c:\users\loktar\.virtualenvs\taskassignor-italq3ur\lib\site-packages\sqlalchemy\orm\unitofwork.py", line 589, in execute
+    uow,
+  File "c:\users\loktar\.virtualenvs\taskassignor-italq3ur\lib\site-packages\sqlalchemy\orm\persistence.py", line 245, in save_obj
+    insert,
+  File "c:\users\loktar\.virtualenvs\taskassignor-italq3ur\lib\site-packages\sqlalchemy\orm\persistence.py", line 1138, in _emit_insert_statements
+    statement, params
+  File "c:\users\loktar\.virtualenvs\taskassignor-italq3ur\lib\site-packages\sqlalchemy\engine\base.py", line 988, in execute
+    return meth(self, multiparams, params)
+  File "c:\users\loktar\.virtualenvs\taskassignor-italq3ur\lib\site-packages\sqlalchemy\sql\elements.py", line 287, in _execute_on_connection
+    return connection._execute_clauseelement(self, multiparams, params)
+  File "c:\users\loktar\.virtualenvs\taskassignor-italq3ur\lib\site-packages\sqlalchemy\engine\base.py", line 1107, in _execute_clauseelement
+    distilled_params,
+  File "c:\users\loktar\.virtualenvs\taskassignor-italq3ur\lib\site-packages\sqlalchemy\engine\base.py", line 1248, in _execute_context
+    e, statement, parameters, cursor, context
+  File "c:\users\loktar\.virtualenvs\taskassignor-italq3ur\lib\site-packages\sqlalchemy\engine\base.py", line 1466, in _handle_dbapi_exception
+    util.raise_from_cause(sqlalchemy_exception, exc_info)
+  File "c:\users\loktar\.virtualenvs\taskassignor-italq3ur\lib\site-packages\sqlalchemy\util\compat.py", line 399, in raise_from_cause
+    reraise(type(exception), exception, tb=exc_tb, cause=cause)
+  File "c:\users\loktar\.virtualenvs\taskassignor-italq3ur\lib\site-packages\sqlalchemy\util\compat.py", line 153, in reraise
+    raise value.with_traceback(tb)
+  File "c:\users\loktar\.virtualenvs\taskassignor-italq3ur\lib\site-packages\sqlalchemy\engine\base.py", line 1244, in _execute_context
+    cursor, statement, parameters, context
+  File "c:\users\loktar\.virtualenvs\taskassignor-italq3ur\lib\site-packages\sqlalchemy\engine\default.py", line 550, in do_execute
+    cursor.execute(statement, parameters)
+sqlalchemy.exc.OperationalError: (sqlite3.OperationalError) no such table: task
+[SQL: INSERT INTO task (batch_id, id, info, checked_info, status, checker, time) VALUES (?, ?, ?, ?, ?, ?, ?)]
+[parameters: ('ff9890a3ff381d3180b357951c98bd8e80898f4d', 1, 'aa', None, 'unchecked', None, None)]
+(Background on this error at: http://sqlalche.me/e/e3q8)
+2019-07-08 21:44:40,740 - taskassignor.view - ERROR - new_task_exception|input = {'assignor_id': 1, 'task_info': [{'id': 1, 'info': 'aa'}]}|exception=(sqlite3.OperationalError) no such table: task
+[SQL: INSERT INTO task (batch_id, id, info, checked_info, status, checker, time) VALUES (?, ?, ?, ?, ?, ?, ?)]
+[parameters: ('2979bcd05f9f1ffaf33799657c16e7b4df6d41f5', 1, 'aa', None, 'unchecked', None, None)]
+(Background on this error at: http://sqlalche.me/e/e3q8)
+Traceback (most recent call last):
+  File "c:\users\loktar\.virtualenvs\taskassignor-italq3ur\lib\site-packages\sqlalchemy\engine\base.py", line 1244, in _execute_context
+    cursor, statement, parameters, context
+  File "c:\users\loktar\.virtualenvs\taskassignor-italq3ur\lib\site-packages\sqlalchemy\engine\default.py", line 550, in do_execute
+    cursor.execute(statement, parameters)
+sqlite3.OperationalError: no such table: task
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "D:\coder\taskAssignor\taskassignor\view.py", line 55, in new_task
+    db.session.commit()
+  File "c:\users\loktar\.virtualenvs\taskassignor-italq3ur\lib\site-packages\sqlalchemy\orm\scoping.py", line 162, in do
+    return getattr(self.registry(), name)(*args, **kwargs)
+  File "c:\users\loktar\.virtualenvs\taskassignor-italq3ur\lib\site-packages\sqlalchemy\orm\session.py", line 1027, in commit
+    self.transaction.commit()
+  File "c:\users\loktar\.virtualenvs\taskassignor-italq3ur\lib\site-packages\sqlalchemy\orm\session.py", line 494, in commit
+    self._prepare_impl()
+  File "c:\users\loktar\.virtualenvs\taskassignor-italq3ur\lib\site-packages\sqlalchemy\orm\session.py", line 473, in _prepare_impl
+    self.session.flush()
+  File "c:\users\loktar\.virtualenvs\taskassignor-italq3ur\lib\site-packages\sqlalchemy\orm\session.py", line 2459, in flush
+    self._flush(objects)
+  File "c:\users\loktar\.virtualenvs\taskassignor-italq3ur\lib\site-packages\sqlalchemy\orm\session.py", line 2597, in _flush
+    transaction.rollback(_capture_exception=True)
+  File "c:\users\loktar\.virtualenvs\taskassignor-italq3ur\lib\site-packages\sqlalchemy\util\langhelpers.py", line 68, in __exit__
+    compat.reraise(exc_type, exc_value, exc_tb)
+  File "c:\users\loktar\.virtualenvs\taskassignor-italq3ur\lib\site-packages\sqlalchemy\util\compat.py", line 154, in reraise
+    raise value
+  File "c:\users\loktar\.virtualenvs\taskassignor-italq3ur\lib\site-packages\sqlalchemy\orm\session.py", line 2557, in _flush
+    flush_context.execute()
+  File "c:\users\loktar\.virtualenvs\taskassignor-italq3ur\lib\site-packages\sqlalchemy\orm\unitofwork.py", line 422, in execute
+    rec.execute(self)
+  File "c:\users\loktar\.virtualenvs\taskassignor-italq3ur\lib\site-packages\sqlalchemy\orm\unitofwork.py", line 589, in execute
+    uow,
+  File "c:\users\loktar\.virtualenvs\taskassignor-italq3ur\lib\site-packages\sqlalchemy\orm\persistence.py", line 245, in save_obj
+    insert,
+  File "c:\users\loktar\.virtualenvs\taskassignor-italq3ur\lib\site-packages\sqlalchemy\orm\persistence.py", line 1138, in _emit_insert_statements
+    statement, params
+  File "c:\users\loktar\.virtualenvs\taskassignor-italq3ur\lib\site-packages\sqlalchemy\engine\base.py", line 988, in execute
+    return meth(self, multiparams, params)
+  File "c:\users\loktar\.virtualenvs\taskassignor-italq3ur\lib\site-packages\sqlalchemy\sql\elements.py", line 287, in _execute_on_connection
+    return connection._execute_clauseelement(self, multiparams, params)
+  File "c:\users\loktar\.virtualenvs\taskassignor-italq3ur\lib\site-packages\sqlalchemy\engine\base.py", line 1107, in _execute_clauseelement
+    distilled_params,
+  File "c:\users\loktar\.virtualenvs\taskassignor-italq3ur\lib\site-packages\sqlalchemy\engine\base.py", line 1248, in _execute_context
+    e, statement, parameters, cursor, context
+  File "c:\users\loktar\.virtualenvs\taskassignor-italq3ur\lib\site-packages\sqlalchemy\engine\base.py", line 1466, in _handle_dbapi_exception
+    util.raise_from_cause(sqlalchemy_exception, exc_info)
+  File "c:\users\loktar\.virtualenvs\taskassignor-italq3ur\lib\site-packages\sqlalchemy\util\compat.py", line 399, in raise_from_cause
+    reraise(type(exception), exception, tb=exc_tb, cause=cause)
+  File "c:\users\loktar\.virtualenvs\taskassignor-italq3ur\lib\site-packages\sqlalchemy\util\compat.py", line 153, in reraise
+    raise value.with_traceback(tb)
+  File "c:\users\loktar\.virtualenvs\taskassignor-italq3ur\lib\site-packages\sqlalchemy\engine\base.py", line 1244, in _execute_context
+    cursor, statement, parameters, context
+  File "c:\users\loktar\.virtualenvs\taskassignor-italq3ur\lib\site-packages\sqlalchemy\engine\default.py", line 550, in do_execute
+    cursor.execute(statement, parameters)
+sqlalchemy.exc.OperationalError: (sqlite3.OperationalError) no such table: task
+[SQL: INSERT INTO task (batch_id, id, info, checked_info, status, checker, time) VALUES (?, ?, ?, ?, ?, ?, ?)]
+[parameters: ('2979bcd05f9f1ffaf33799657c16e7b4df6d41f5', 1, 'aa', None, 'unchecked', None, None)]
+(Background on this error at: http://sqlalche.me/e/e3q8)
+2019-07-08 22:40:37,223 - taskassignor.view - ERROR - new_task_exception|input = {'assignor_id': 1, 'task_info': [{'id': 1, 'info': 'aa'}]}|exception=(sqlite3.OperationalError) no such table: task
+[SQL: INSERT INTO task (batch_id, id, info, checked_info, status, checker, time) VALUES (?, ?, ?, ?, ?, ?, ?)]
+[parameters: ('352e5e37332f67c49db0ed6b95421d9c30a0cbb0', 1, 'aa', None, 'unchecked', None, None)]
+(Background on this error at: http://sqlalche.me/e/e3q8)
+Traceback (most recent call last):
+  File "C:\Users\loktar\.virtualenvs\taskAssignor-ItalQ3UR\lib\site-packages\sqlalchemy\engine\base.py", line 1244, in _execute_context
+    cursor, statement, parameters, context
+  File "C:\Users\loktar\.virtualenvs\taskAssignor-ItalQ3UR\lib\site-packages\sqlalchemy\engine\default.py", line 550, in do_execute
+    cursor.execute(statement, parameters)
+sqlite3.OperationalError: no such table: task
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "D:\coder\taskAssignor\taskassignor\view.py", line 55, in new_task
+    db.session.commit()
+  File "C:\Users\loktar\.virtualenvs\taskAssignor-ItalQ3UR\lib\site-packages\sqlalchemy\orm\scoping.py", line 162, in do
+    return getattr(self.registry(), name)(*args, **kwargs)
+  File "C:\Users\loktar\.virtualenvs\taskAssignor-ItalQ3UR\lib\site-packages\sqlalchemy\orm\session.py", line 1027, in commit
+    self.transaction.commit()
+  File "C:\Users\loktar\.virtualenvs\taskAssignor-ItalQ3UR\lib\site-packages\sqlalchemy\orm\session.py", line 494, in commit
+    self._prepare_impl()
+  File "C:\Users\loktar\.virtualenvs\taskAssignor-ItalQ3UR\lib\site-packages\sqlalchemy\orm\session.py", line 473, in _prepare_impl
+    self.session.flush()
+  File "C:\Users\loktar\.virtualenvs\taskAssignor-ItalQ3UR\lib\site-packages\sqlalchemy\orm\session.py", line 2459, in flush
+    self._flush(objects)
+  File "C:\Users\loktar\.virtualenvs\taskAssignor-ItalQ3UR\lib\site-packages\sqlalchemy\orm\session.py", line 2597, in _flush
+    transaction.rollback(_capture_exception=True)
+  File "C:\Users\loktar\.virtualenvs\taskAssignor-ItalQ3UR\lib\site-packages\sqlalchemy\util\langhelpers.py", line 68, in __exit__
+    compat.reraise(exc_type, exc_value, exc_tb)
+  File "C:\Users\loktar\.virtualenvs\taskAssignor-ItalQ3UR\lib\site-packages\sqlalchemy\util\compat.py", line 154, in reraise
+    raise value
+  File "C:\Users\loktar\.virtualenvs\taskAssignor-ItalQ3UR\lib\site-packages\sqlalchemy\orm\session.py", line 2557, in _flush
+    flush_context.execute()
+  File "C:\Users\loktar\.virtualenvs\taskAssignor-ItalQ3UR\lib\site-packages\sqlalchemy\orm\unitofwork.py", line 422, in execute
+    rec.execute(self)
+  File "C:\Users\loktar\.virtualenvs\taskAssignor-ItalQ3UR\lib\site-packages\sqlalchemy\orm\unitofwork.py", line 589, in execute
+    uow,
+  File "C:\Users\loktar\.virtualenvs\taskAssignor-ItalQ3UR\lib\site-packages\sqlalchemy\orm\persistence.py", line 245, in save_obj
+    insert,
+  File "C:\Users\loktar\.virtualenvs\taskAssignor-ItalQ3UR\lib\site-packages\sqlalchemy\orm\persistence.py", line 1138, in _emit_insert_statements
+    statement, params
+  File "C:\Users\loktar\.virtualenvs\taskAssignor-ItalQ3UR\lib\site-packages\sqlalchemy\engine\base.py", line 988, in execute
+    return meth(self, multiparams, params)
+  File "C:\Users\loktar\.virtualenvs\taskAssignor-ItalQ3UR\lib\site-packages\sqlalchemy\sql\elements.py", line 287, in _execute_on_connection
+    return connection._execute_clauseelement(self, multiparams, params)
+  File "C:\Users\loktar\.virtualenvs\taskAssignor-ItalQ3UR\lib\site-packages\sqlalchemy\engine\base.py", line 1107, in _execute_clauseelement
+    distilled_params,
+  File "C:\Users\loktar\.virtualenvs\taskAssignor-ItalQ3UR\lib\site-packages\sqlalchemy\engine\base.py", line 1248, in _execute_context
+    e, statement, parameters, cursor, context
+  File "C:\Users\loktar\.virtualenvs\taskAssignor-ItalQ3UR\lib\site-packages\sqlalchemy\engine\base.py", line 1466, in _handle_dbapi_exception
+    util.raise_from_cause(sqlalchemy_exception, exc_info)
+  File "C:\Users\loktar\.virtualenvs\taskAssignor-ItalQ3UR\lib\site-packages\sqlalchemy\util\compat.py", line 399, in raise_from_cause
+    reraise(type(exception), exception, tb=exc_tb, cause=cause)
+  File "C:\Users\loktar\.virtualenvs\taskAssignor-ItalQ3UR\lib\site-packages\sqlalchemy\util\compat.py", line 153, in reraise
+    raise value.with_traceback(tb)
+  File "C:\Users\loktar\.virtualenvs\taskAssignor-ItalQ3UR\lib\site-packages\sqlalchemy\engine\base.py", line 1244, in _execute_context
+    cursor, statement, parameters, context
+  File "C:\Users\loktar\.virtualenvs\taskAssignor-ItalQ3UR\lib\site-packages\sqlalchemy\engine\default.py", line 550, in do_execute
+    cursor.execute(statement, parameters)
+sqlalchemy.exc.OperationalError: (sqlite3.OperationalError) no such table: task
+[SQL: INSERT INTO task (batch_id, id, info, checked_info, status, checker, time) VALUES (?, ?, ?, ?, ?, ?, ?)]
+[parameters: ('352e5e37332f67c49db0ed6b95421d9c30a0cbb0', 1, 'aa', None, 'unchecked', None, None)]
+(Background on this error at: http://sqlalche.me/e/e3q8)
+2019-07-08 23:04:39,291 - taskassignor.view - INFO - new_task_success|assignor_id=1|batch_id=c8cef03f985fe5e33ee5406bc964cfaec728377c
+2019-07-09 11:01:14,066 - taskassignor.view - ERROR - new_task_exception|input = {'assignor_id': 1, 'task_info': [{'id': 1, 'info': 'aa'}]}|exception=(sqlite3.OperationalError) no such table: task
+[SQL: INSERT INTO task (batch_id, id, info, checked_info, status, checker, time) VALUES (?, ?, ?, ?, ?, ?, ?)]
+[parameters: ('6a969f36428ec175fb2f705a185ca09011ec0ddc', 1, 'aa', None, 'unchecked', None, None)]
+(Background on this error at: http://sqlalche.me/e/e3q8)
+Traceback (most recent call last):
+  File "C:\Users\loktar\.virtualenvs\taskAssignor-ItalQ3UR\lib\site-packages\sqlalchemy\engine\base.py", line 1244, in _execute_context
+    cursor, statement, parameters, context
+  File "C:\Users\loktar\.virtualenvs\taskAssignor-ItalQ3UR\lib\site-packages\sqlalchemy\engine\default.py", line 550, in do_execute
+    cursor.execute(statement, parameters)
+sqlite3.OperationalError: no such table: task
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "D:\coder\self_project\taskAssignor\taskassignor\view.py", line 55, in new_task
+    db.session.commit()
+  File "C:\Users\loktar\.virtualenvs\taskAssignor-ItalQ3UR\lib\site-packages\sqlalchemy\orm\scoping.py", line 162, in do
+    return getattr(self.registry(), name)(*args, **kwargs)
+  File "C:\Users\loktar\.virtualenvs\taskAssignor-ItalQ3UR\lib\site-packages\sqlalchemy\orm\session.py", line 1027, in commit
+    self.transaction.commit()
+  File "C:\Users\loktar\.virtualenvs\taskAssignor-ItalQ3UR\lib\site-packages\sqlalchemy\orm\session.py", line 494, in commit
+    self._prepare_impl()
+  File "C:\Users\loktar\.virtualenvs\taskAssignor-ItalQ3UR\lib\site-packages\sqlalchemy\orm\session.py", line 473, in _prepare_impl
+    self.session.flush()
+  File "C:\Users\loktar\.virtualenvs\taskAssignor-ItalQ3UR\lib\site-packages\sqlalchemy\orm\session.py", line 2459, in flush
+    self._flush(objects)
+  File "C:\Users\loktar\.virtualenvs\taskAssignor-ItalQ3UR\lib\site-packages\sqlalchemy\orm\session.py", line 2597, in _flush
+    transaction.rollback(_capture_exception=True)
+  File "C:\Users\loktar\.virtualenvs\taskAssignor-ItalQ3UR\lib\site-packages\sqlalchemy\util\langhelpers.py", line 68, in __exit__
+    compat.reraise(exc_type, exc_value, exc_tb)
+  File "C:\Users\loktar\.virtualenvs\taskAssignor-ItalQ3UR\lib\site-packages\sqlalchemy\util\compat.py", line 154, in reraise
+    raise value
+  File "C:\Users\loktar\.virtualenvs\taskAssignor-ItalQ3UR\lib\site-packages\sqlalchemy\orm\session.py", line 2557, in _flush
+    flush_context.execute()
+  File "C:\Users\loktar\.virtualenvs\taskAssignor-ItalQ3UR\lib\site-packages\sqlalchemy\orm\unitofwork.py", line 422, in execute
+    rec.execute(self)
+  File "C:\Users\loktar\.virtualenvs\taskAssignor-ItalQ3UR\lib\site-packages\sqlalchemy\orm\unitofwork.py", line 589, in execute
+    uow,
+  File "C:\Users\loktar\.virtualenvs\taskAssignor-ItalQ3UR\lib\site-packages\sqlalchemy\orm\persistence.py", line 245, in save_obj
+    insert,
+  File "C:\Users\loktar\.virtualenvs\taskAssignor-ItalQ3UR\lib\site-packages\sqlalchemy\orm\persistence.py", line 1138, in _emit_insert_statements
+    statement, params
+  File "C:\Users\loktar\.virtualenvs\taskAssignor-ItalQ3UR\lib\site-packages\sqlalchemy\engine\base.py", line 988, in execute
+    return meth(self, multiparams, params)
+  File "C:\Users\loktar\.virtualenvs\taskAssignor-ItalQ3UR\lib\site-packages\sqlalchemy\sql\elements.py", line 287, in _execute_on_connection
+    return connection._execute_clauseelement(self, multiparams, params)
+  File "C:\Users\loktar\.virtualenvs\taskAssignor-ItalQ3UR\lib\site-packages\sqlalchemy\engine\base.py", line 1107, in _execute_clauseelement
+    distilled_params,
+  File "C:\Users\loktar\.virtualenvs\taskAssignor-ItalQ3UR\lib\site-packages\sqlalchemy\engine\base.py", line 1248, in _execute_context
+    e, statement, parameters, cursor, context
+  File "C:\Users\loktar\.virtualenvs\taskAssignor-ItalQ3UR\lib\site-packages\sqlalchemy\engine\base.py", line 1466, in _handle_dbapi_exception
+    util.raise_from_cause(sqlalchemy_exception, exc_info)
+  File "C:\Users\loktar\.virtualenvs\taskAssignor-ItalQ3UR\lib\site-packages\sqlalchemy\util\compat.py", line 399, in raise_from_cause
+    reraise(type(exception), exception, tb=exc_tb, cause=cause)
+  File "C:\Users\loktar\.virtualenvs\taskAssignor-ItalQ3UR\lib\site-packages\sqlalchemy\util\compat.py", line 153, in reraise
+    raise value.with_traceback(tb)
+  File "C:\Users\loktar\.virtualenvs\taskAssignor-ItalQ3UR\lib\site-packages\sqlalchemy\engine\base.py", line 1244, in _execute_context
+    cursor, statement, parameters, context
+  File "C:\Users\loktar\.virtualenvs\taskAssignor-ItalQ3UR\lib\site-packages\sqlalchemy\engine\default.py", line 550, in do_execute
+    cursor.execute(statement, parameters)
+sqlalchemy.exc.OperationalError: (sqlite3.OperationalError) no such table: task
+[SQL: INSERT INTO task (batch_id, id, info, checked_info, status, checker, time) VALUES (?, ?, ?, ?, ?, ?, ?)]
+[parameters: ('6a969f36428ec175fb2f705a185ca09011ec0ddc', 1, 'aa', None, 'unchecked', None, None)]
+(Background on this error at: http://sqlalche.me/e/e3q8)
+2019-07-09 11:07:22,719 - taskassignor.view - ERROR - new_task_exception|input = {'assignor_id': 1, 'task_info': [{'id': 1, 'info': 'aa'}]}|exception=(sqlite3.OperationalError) unable to open database file
+(Background on this error at: http://sqlalche.me/e/e3q8)
+Traceback (most recent call last):
+  File "C:\Users\loktar\.virtualenvs\taskAssignor-ItalQ3UR\lib\site-packages\sqlalchemy\engine\base.py", line 2262, in _wrap_pool_connect
+    return fn()
+  File "C:\Users\loktar\.virtualenvs\taskAssignor-ItalQ3UR\lib\site-packages\sqlalchemy\pool\base.py", line 363, in connect
+    return _ConnectionFairy._checkout(self)
+  File "C:\Users\loktar\.virtualenvs\taskAssignor-ItalQ3UR\lib\site-packages\sqlalchemy\pool\base.py", line 760, in _checkout
+    fairy = _ConnectionRecord.checkout(pool)
+  File "C:\Users\loktar\.virtualenvs\taskAssignor-ItalQ3UR\lib\site-packages\sqlalchemy\pool\base.py", line 492, in checkout
+    rec = pool._do_get()
+  File "C:\Users\loktar\.virtualenvs\taskAssignor-ItalQ3UR\lib\site-packages\sqlalchemy\pool\impl.py", line 238, in _do_get
+    return self._create_connection()
+  File "C:\Users\loktar\.virtualenvs\taskAssignor-ItalQ3UR\lib\site-packages\sqlalchemy\pool\base.py", line 308, in _create_connection
+    return _ConnectionRecord(self)
+  File "C:\Users\loktar\.virtualenvs\taskAssignor-ItalQ3UR\lib\site-packages\sqlalchemy\pool\base.py", line 437, in __init__
+    self.__connect(first_connect_check=True)
+  File "C:\Users\loktar\.virtualenvs\taskAssignor-ItalQ3UR\lib\site-packages\sqlalchemy\pool\base.py", line 639, in __connect
+    connection = pool._invoke_creator(self)
+  File "C:\Users\loktar\.virtualenvs\taskAssignor-ItalQ3UR\lib\site-packages\sqlalchemy\engine\strategies.py", line 114, in connect
+    return dialect.connect(*cargs, **cparams)
+  File "C:\Users\loktar\.virtualenvs\taskAssignor-ItalQ3UR\lib\site-packages\sqlalchemy\engine\default.py", line 451, in connect
+    return self.dbapi.connect(*cargs, **cparams)
+sqlite3.OperationalError: unable to open database file
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "D:\coder\self_project\taskAssignor\taskassignor\view.py", line 55, in new_task
+    db.session.commit()
+  File "C:\Users\loktar\.virtualenvs\taskAssignor-ItalQ3UR\lib\site-packages\sqlalchemy\orm\scoping.py", line 162, in do
+    return getattr(self.registry(), name)(*args, **kwargs)
+  File "C:\Users\loktar\.virtualenvs\taskAssignor-ItalQ3UR\lib\site-packages\sqlalchemy\orm\session.py", line 1027, in commit
+    self.transaction.commit()
+  File "C:\Users\loktar\.virtualenvs\taskAssignor-ItalQ3UR\lib\site-packages\sqlalchemy\orm\session.py", line 494, in commit
+    self._prepare_impl()
+  File "C:\Users\loktar\.virtualenvs\taskAssignor-ItalQ3UR\lib\site-packages\sqlalchemy\orm\session.py", line 473, in _prepare_impl
+    self.session.flush()
+  File "C:\Users\loktar\.virtualenvs\taskAssignor-ItalQ3UR\lib\site-packages\sqlalchemy\orm\session.py", line 2459, in flush
+    self._flush(objects)
+  File "C:\Users\loktar\.virtualenvs\taskAssignor-ItalQ3UR\lib\site-packages\sqlalchemy\orm\session.py", line 2597, in _flush
+    transaction.rollback(_capture_exception=True)
+  File "C:\Users\loktar\.virtualenvs\taskAssignor-ItalQ3UR\lib\site-packages\sqlalchemy\util\langhelpers.py", line 68, in __exit__
+    compat.reraise(exc_type, exc_value, exc_tb)
+  File "C:\Users\loktar\.virtualenvs\taskAssignor-ItalQ3UR\lib\site-packages\sqlalchemy\util\compat.py", line 154, in reraise
+    raise value
+  File "C:\Users\loktar\.virtualenvs\taskAssignor-ItalQ3UR\lib\site-packages\sqlalchemy\orm\session.py", line 2557, in _flush
+    flush_context.execute()
+  File "C:\Users\loktar\.virtualenvs\taskAssignor-ItalQ3UR\lib\site-packages\sqlalchemy\orm\unitofwork.py", line 422, in execute
+    rec.execute(self)
+  File "C:\Users\loktar\.virtualenvs\taskAssignor-ItalQ3UR\lib\site-packages\sqlalchemy\orm\unitofwork.py", line 589, in execute
+    uow,
+  File "C:\Users\loktar\.virtualenvs\taskAssignor-ItalQ3UR\lib\site-packages\sqlalchemy\orm\persistence.py", line 213, in save_obj
+    ) in _organize_states_for_save(base_mapper, states, uowtransaction):
+  File "C:\Users\loktar\.virtualenvs\taskAssignor-ItalQ3UR\lib\site-packages\sqlalchemy\orm\persistence.py", line 374, in _organize_states_for_save
+    base_mapper, uowtransaction, states
+  File "C:\Users\loktar\.virtualenvs\taskAssignor-ItalQ3UR\lib\site-packages\sqlalchemy\orm\persistence.py", line 1605, in _connections_for_states
+    connection = uowtransaction.transaction.connection(base_mapper)
+  File "C:\Users\loktar\.virtualenvs\taskAssignor-ItalQ3UR\lib\site-packages\sqlalchemy\orm\session.py", line 313, in connection
+    return self._connection_for_bind(bind, execution_options)
+  File "C:\Users\loktar\.virtualenvs\taskAssignor-ItalQ3UR\lib\site-packages\sqlalchemy\orm\session.py", line 419, in _connection_for_bind
+    conn = self._parent._connection_for_bind(bind, execution_options)
+  File "C:\Users\loktar\.virtualenvs\taskAssignor-ItalQ3UR\lib\site-packages\sqlalchemy\orm\session.py", line 431, in _connection_for_bind
+    conn = bind._contextual_connect()
+  File "C:\Users\loktar\.virtualenvs\taskAssignor-ItalQ3UR\lib\site-packages\sqlalchemy\engine\base.py", line 2226, in _contextual_connect
+    self._wrap_pool_connect(self.pool.connect, None),
+  File "C:\Users\loktar\.virtualenvs\taskAssignor-ItalQ3UR\lib\site-packages\sqlalchemy\engine\base.py", line 2266, in _wrap_pool_connect
+    e, dialect, self
+  File "C:\Users\loktar\.virtualenvs\taskAssignor-ItalQ3UR\lib\site-packages\sqlalchemy\engine\base.py", line 1536, in _handle_dbapi_exception_noconnection
+    util.raise_from_cause(sqlalchemy_exception, exc_info)
+  File "C:\Users\loktar\.virtualenvs\taskAssignor-ItalQ3UR\lib\site-packages\sqlalchemy\util\compat.py", line 399, in raise_from_cause
+    reraise(type(exception), exception, tb=exc_tb, cause=cause)
+  File "C:\Users\loktar\.virtualenvs\taskAssignor-ItalQ3UR\lib\site-packages\sqlalchemy\util\compat.py", line 153, in reraise
+    raise value.with_traceback(tb)
+  File "C:\Users\loktar\.virtualenvs\taskAssignor-ItalQ3UR\lib\site-packages\sqlalchemy\engine\base.py", line 2262, in _wrap_pool_connect
+    return fn()
+  File "C:\Users\loktar\.virtualenvs\taskAssignor-ItalQ3UR\lib\site-packages\sqlalchemy\pool\base.py", line 363, in connect
+    return _ConnectionFairy._checkout(self)
+  File "C:\Users\loktar\.virtualenvs\taskAssignor-ItalQ3UR\lib\site-packages\sqlalchemy\pool\base.py", line 760, in _checkout
+    fairy = _ConnectionRecord.checkout(pool)
+  File "C:\Users\loktar\.virtualenvs\taskAssignor-ItalQ3UR\lib\site-packages\sqlalchemy\pool\base.py", line 492, in checkout
+    rec = pool._do_get()
+  File "C:\Users\loktar\.virtualenvs\taskAssignor-ItalQ3UR\lib\site-packages\sqlalchemy\pool\impl.py", line 238, in _do_get
+    return self._create_connection()
+  File "C:\Users\loktar\.virtualenvs\taskAssignor-ItalQ3UR\lib\site-packages\sqlalchemy\pool\base.py", line 308, in _create_connection
+    return _ConnectionRecord(self)
+  File "C:\Users\loktar\.virtualenvs\taskAssignor-ItalQ3UR\lib\site-packages\sqlalchemy\pool\base.py", line 437, in __init__
+    self.__connect(first_connect_check=True)
+  File "C:\Users\loktar\.virtualenvs\taskAssignor-ItalQ3UR\lib\site-packages\sqlalchemy\pool\base.py", line 639, in __connect
+    connection = pool._invoke_creator(self)
+  File "C:\Users\loktar\.virtualenvs\taskAssignor-ItalQ3UR\lib\site-packages\sqlalchemy\engine\strategies.py", line 114, in connect
+    return dialect.connect(*cargs, **cparams)
+  File "C:\Users\loktar\.virtualenvs\taskAssignor-ItalQ3UR\lib\site-packages\sqlalchemy\engine\default.py", line 451, in connect
+    return self.dbapi.connect(*cargs, **cparams)
+sqlalchemy.exc.OperationalError: (sqlite3.OperationalError) unable to open database file
+(Background on this error at: http://sqlalche.me/e/e3q8)
+2019-07-09 11:08:40,890 - taskassignor.view - INFO - new_task_success|assignor_id=1|batch_id=a8611747cae25805e289a63a6fe879251153180d
+2019-07-09 11:11:08,780 - taskassignor.view - INFO - new_task_success|assignor_id=1|batch_id=f05cff76df071bf6e2f17324e2b08f70a494abac
+2019-07-09 11:11:11,924 - taskassignor.view - INFO - new_task_success|assignor_id=1|batch_id=f96b1b2e14b6e75d4d9a749a241ea327db8f1284
