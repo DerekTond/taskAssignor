@@ -533,3 +533,198 @@ sqlalchemy.exc.OperationalError: (sqlite3.OperationalError) unable to open datab
 2019-07-09 11:08:40,890 - taskassignor.view - INFO - new_task_success|assignor_id=1|batch_id=a8611747cae25805e289a63a6fe879251153180d
 2019-07-09 11:11:08,780 - taskassignor.view - INFO - new_task_success|assignor_id=1|batch_id=f05cff76df071bf6e2f17324e2b08f70a494abac
 2019-07-09 11:11:11,924 - taskassignor.view - INFO - new_task_success|assignor_id=1|batch_id=f96b1b2e14b6e75d4d9a749a241ea327db8f1284
+2019-07-09 17:35:50,434 - taskassignor.view - ERROR - new_task_exception|input = {'assignor_id': 1, 'task_info': [{'id': 1, 'info': 'aa'}]}|exception=(pymysql.err.InternalError) (1364, "Field 'r_id' doesn't have a default value")
+[SQL: INSERT INTO task (batch_id, id, info, checked_info, status, checker, time) VALUES (%(batch_id)s, %(id)s, %(info)s, %(checked_info)s, %(status)s, %(checker)s, %(time)s)]
+[parameters: {'batch_id': '53e5cf0826d89d4e816a983cc93b48925b6bb92e', 'id': 1, 'info': 'aa', 'checked_info': None, 'status': 'unchecked', 'checker': None, 'time': None}]
+(Background on this error at: http://sqlalche.me/e/2j85)
+Traceback (most recent call last):
+  File "C:\Users\loktar\.virtualenvs\taskAssignor-ItalQ3UR\lib\site-packages\sqlalchemy\engine\base.py", line 1244, in _execute_context
+    cursor, statement, parameters, context
+  File "C:\Users\loktar\.virtualenvs\taskAssignor-ItalQ3UR\lib\site-packages\sqlalchemy\engine\default.py", line 550, in do_execute
+    cursor.execute(statement, parameters)
+  File "C:\Users\loktar\.virtualenvs\taskAssignor-ItalQ3UR\lib\site-packages\pymysql\cursors.py", line 170, in execute
+    result = self._query(query)
+  File "C:\Users\loktar\.virtualenvs\taskAssignor-ItalQ3UR\lib\site-packages\pymysql\cursors.py", line 328, in _query
+    conn.query(q)
+  File "C:\Users\loktar\.virtualenvs\taskAssignor-ItalQ3UR\lib\site-packages\pymysql\connections.py", line 517, in query
+    self._affected_rows = self._read_query_result(unbuffered=unbuffered)
+  File "C:\Users\loktar\.virtualenvs\taskAssignor-ItalQ3UR\lib\site-packages\pymysql\connections.py", line 732, in _read_query_result
+    result.read()
+  File "C:\Users\loktar\.virtualenvs\taskAssignor-ItalQ3UR\lib\site-packages\pymysql\connections.py", line 1075, in read
+    first_packet = self.connection._read_packet()
+  File "C:\Users\loktar\.virtualenvs\taskAssignor-ItalQ3UR\lib\site-packages\pymysql\connections.py", line 684, in _read_packet
+    packet.check_error()
+  File "C:\Users\loktar\.virtualenvs\taskAssignor-ItalQ3UR\lib\site-packages\pymysql\protocol.py", line 220, in check_error
+    err.raise_mysql_exception(self._data)
+  File "C:\Users\loktar\.virtualenvs\taskAssignor-ItalQ3UR\lib\site-packages\pymysql\err.py", line 109, in raise_mysql_exception
+    raise errorclass(errno, errval)
+pymysql.err.InternalError: (1364, "Field 'r_id' doesn't have a default value")
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "D:\coder\self_project\taskAssignor\taskassignor\view.py", line 55, in new_task
+    db.session.commit()
+  File "C:\Users\loktar\.virtualenvs\taskAssignor-ItalQ3UR\lib\site-packages\sqlalchemy\orm\scoping.py", line 162, in do
+    return getattr(self.registry(), name)(*args, **kwargs)
+  File "C:\Users\loktar\.virtualenvs\taskAssignor-ItalQ3UR\lib\site-packages\sqlalchemy\orm\session.py", line 1027, in commit
+    self.transaction.commit()
+  File "C:\Users\loktar\.virtualenvs\taskAssignor-ItalQ3UR\lib\site-packages\sqlalchemy\orm\session.py", line 494, in commit
+    self._prepare_impl()
+  File "C:\Users\loktar\.virtualenvs\taskAssignor-ItalQ3UR\lib\site-packages\sqlalchemy\orm\session.py", line 473, in _prepare_impl
+    self.session.flush()
+  File "C:\Users\loktar\.virtualenvs\taskAssignor-ItalQ3UR\lib\site-packages\sqlalchemy\orm\session.py", line 2459, in flush
+    self._flush(objects)
+  File "C:\Users\loktar\.virtualenvs\taskAssignor-ItalQ3UR\lib\site-packages\sqlalchemy\orm\session.py", line 2597, in _flush
+    transaction.rollback(_capture_exception=True)
+  File "C:\Users\loktar\.virtualenvs\taskAssignor-ItalQ3UR\lib\site-packages\sqlalchemy\util\langhelpers.py", line 68, in __exit__
+    compat.reraise(exc_type, exc_value, exc_tb)
+  File "C:\Users\loktar\.virtualenvs\taskAssignor-ItalQ3UR\lib\site-packages\sqlalchemy\util\compat.py", line 154, in reraise
+    raise value
+  File "C:\Users\loktar\.virtualenvs\taskAssignor-ItalQ3UR\lib\site-packages\sqlalchemy\orm\session.py", line 2557, in _flush
+    flush_context.execute()
+  File "C:\Users\loktar\.virtualenvs\taskAssignor-ItalQ3UR\lib\site-packages\sqlalchemy\orm\unitofwork.py", line 422, in execute
+    rec.execute(self)
+  File "C:\Users\loktar\.virtualenvs\taskAssignor-ItalQ3UR\lib\site-packages\sqlalchemy\orm\unitofwork.py", line 589, in execute
+    uow,
+  File "C:\Users\loktar\.virtualenvs\taskAssignor-ItalQ3UR\lib\site-packages\sqlalchemy\orm\persistence.py", line 245, in save_obj
+    insert,
+  File "C:\Users\loktar\.virtualenvs\taskAssignor-ItalQ3UR\lib\site-packages\sqlalchemy\orm\persistence.py", line 1138, in _emit_insert_statements
+    statement, params
+  File "C:\Users\loktar\.virtualenvs\taskAssignor-ItalQ3UR\lib\site-packages\sqlalchemy\engine\base.py", line 988, in execute
+    return meth(self, multiparams, params)
+  File "C:\Users\loktar\.virtualenvs\taskAssignor-ItalQ3UR\lib\site-packages\sqlalchemy\sql\elements.py", line 287, in _execute_on_connection
+    return connection._execute_clauseelement(self, multiparams, params)
+  File "C:\Users\loktar\.virtualenvs\taskAssignor-ItalQ3UR\lib\site-packages\sqlalchemy\engine\base.py", line 1107, in _execute_clauseelement
+    distilled_params,
+  File "C:\Users\loktar\.virtualenvs\taskAssignor-ItalQ3UR\lib\site-packages\sqlalchemy\engine\base.py", line 1248, in _execute_context
+    e, statement, parameters, cursor, context
+  File "C:\Users\loktar\.virtualenvs\taskAssignor-ItalQ3UR\lib\site-packages\sqlalchemy\engine\base.py", line 1466, in _handle_dbapi_exception
+    util.raise_from_cause(sqlalchemy_exception, exc_info)
+  File "C:\Users\loktar\.virtualenvs\taskAssignor-ItalQ3UR\lib\site-packages\sqlalchemy\util\compat.py", line 399, in raise_from_cause
+    reraise(type(exception), exception, tb=exc_tb, cause=cause)
+  File "C:\Users\loktar\.virtualenvs\taskAssignor-ItalQ3UR\lib\site-packages\sqlalchemy\util\compat.py", line 153, in reraise
+    raise value.with_traceback(tb)
+  File "C:\Users\loktar\.virtualenvs\taskAssignor-ItalQ3UR\lib\site-packages\sqlalchemy\engine\base.py", line 1244, in _execute_context
+    cursor, statement, parameters, context
+  File "C:\Users\loktar\.virtualenvs\taskAssignor-ItalQ3UR\lib\site-packages\sqlalchemy\engine\default.py", line 550, in do_execute
+    cursor.execute(statement, parameters)
+  File "C:\Users\loktar\.virtualenvs\taskAssignor-ItalQ3UR\lib\site-packages\pymysql\cursors.py", line 170, in execute
+    result = self._query(query)
+  File "C:\Users\loktar\.virtualenvs\taskAssignor-ItalQ3UR\lib\site-packages\pymysql\cursors.py", line 328, in _query
+    conn.query(q)
+  File "C:\Users\loktar\.virtualenvs\taskAssignor-ItalQ3UR\lib\site-packages\pymysql\connections.py", line 517, in query
+    self._affected_rows = self._read_query_result(unbuffered=unbuffered)
+  File "C:\Users\loktar\.virtualenvs\taskAssignor-ItalQ3UR\lib\site-packages\pymysql\connections.py", line 732, in _read_query_result
+    result.read()
+  File "C:\Users\loktar\.virtualenvs\taskAssignor-ItalQ3UR\lib\site-packages\pymysql\connections.py", line 1075, in read
+    first_packet = self.connection._read_packet()
+  File "C:\Users\loktar\.virtualenvs\taskAssignor-ItalQ3UR\lib\site-packages\pymysql\connections.py", line 684, in _read_packet
+    packet.check_error()
+  File "C:\Users\loktar\.virtualenvs\taskAssignor-ItalQ3UR\lib\site-packages\pymysql\protocol.py", line 220, in check_error
+    err.raise_mysql_exception(self._data)
+  File "C:\Users\loktar\.virtualenvs\taskAssignor-ItalQ3UR\lib\site-packages\pymysql\err.py", line 109, in raise_mysql_exception
+    raise errorclass(errno, errval)
+sqlalchemy.exc.InternalError: (pymysql.err.InternalError) (1364, "Field 'r_id' doesn't have a default value")
+[SQL: INSERT INTO task (batch_id, id, info, checked_info, status, checker, time) VALUES (%(batch_id)s, %(id)s, %(info)s, %(checked_info)s, %(status)s, %(checker)s, %(time)s)]
+[parameters: {'batch_id': '53e5cf0826d89d4e816a983cc93b48925b6bb92e', 'id': 1, 'info': 'aa', 'checked_info': None, 'status': 'unchecked', 'checker': None, 'time': None}]
+(Background on this error at: http://sqlalche.me/e/2j85)
+2019-07-09 17:36:22,210 - taskassignor.view - ERROR - new_task_exception|input = {'assignor_id': 1, 'task_info': [{'id': 1, 'info': 'aa'}]}|exception=(pymysql.err.InternalError) (1364, "Field 'r_id' doesn't have a default value")
+[SQL: INSERT INTO task (batch_id, id, info, checked_info, status, checker, time) VALUES (%(batch_id)s, %(id)s, %(info)s, %(checked_info)s, %(status)s, %(checker)s, %(time)s)]
+[parameters: {'batch_id': '05ceb7437d8acfb043125128622bd6b5c624ff04', 'id': 1, 'info': 'aa', 'checked_info': None, 'status': 'unchecked', 'checker': None, 'time': None}]
+(Background on this error at: http://sqlalche.me/e/2j85)
+Traceback (most recent call last):
+  File "C:\Users\loktar\.virtualenvs\taskAssignor-ItalQ3UR\lib\site-packages\sqlalchemy\engine\base.py", line 1244, in _execute_context
+    cursor, statement, parameters, context
+  File "C:\Users\loktar\.virtualenvs\taskAssignor-ItalQ3UR\lib\site-packages\sqlalchemy\engine\default.py", line 550, in do_execute
+    cursor.execute(statement, parameters)
+  File "C:\Users\loktar\.virtualenvs\taskAssignor-ItalQ3UR\lib\site-packages\pymysql\cursors.py", line 170, in execute
+    result = self._query(query)
+  File "C:\Users\loktar\.virtualenvs\taskAssignor-ItalQ3UR\lib\site-packages\pymysql\cursors.py", line 328, in _query
+    conn.query(q)
+  File "C:\Users\loktar\.virtualenvs\taskAssignor-ItalQ3UR\lib\site-packages\pymysql\connections.py", line 517, in query
+    self._affected_rows = self._read_query_result(unbuffered=unbuffered)
+  File "C:\Users\loktar\.virtualenvs\taskAssignor-ItalQ3UR\lib\site-packages\pymysql\connections.py", line 732, in _read_query_result
+    result.read()
+  File "C:\Users\loktar\.virtualenvs\taskAssignor-ItalQ3UR\lib\site-packages\pymysql\connections.py", line 1075, in read
+    first_packet = self.connection._read_packet()
+  File "C:\Users\loktar\.virtualenvs\taskAssignor-ItalQ3UR\lib\site-packages\pymysql\connections.py", line 684, in _read_packet
+    packet.check_error()
+  File "C:\Users\loktar\.virtualenvs\taskAssignor-ItalQ3UR\lib\site-packages\pymysql\protocol.py", line 220, in check_error
+    err.raise_mysql_exception(self._data)
+  File "C:\Users\loktar\.virtualenvs\taskAssignor-ItalQ3UR\lib\site-packages\pymysql\err.py", line 109, in raise_mysql_exception
+    raise errorclass(errno, errval)
+pymysql.err.InternalError: (1364, "Field 'r_id' doesn't have a default value")
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "D:\coder\self_project\taskAssignor\taskassignor\view.py", line 55, in new_task
+    db.session.commit()
+  File "C:\Users\loktar\.virtualenvs\taskAssignor-ItalQ3UR\lib\site-packages\sqlalchemy\orm\scoping.py", line 162, in do
+    return getattr(self.registry(), name)(*args, **kwargs)
+  File "C:\Users\loktar\.virtualenvs\taskAssignor-ItalQ3UR\lib\site-packages\sqlalchemy\orm\session.py", line 1027, in commit
+    self.transaction.commit()
+  File "C:\Users\loktar\.virtualenvs\taskAssignor-ItalQ3UR\lib\site-packages\sqlalchemy\orm\session.py", line 494, in commit
+    self._prepare_impl()
+  File "C:\Users\loktar\.virtualenvs\taskAssignor-ItalQ3UR\lib\site-packages\sqlalchemy\orm\session.py", line 473, in _prepare_impl
+    self.session.flush()
+  File "C:\Users\loktar\.virtualenvs\taskAssignor-ItalQ3UR\lib\site-packages\sqlalchemy\orm\session.py", line 2459, in flush
+    self._flush(objects)
+  File "C:\Users\loktar\.virtualenvs\taskAssignor-ItalQ3UR\lib\site-packages\sqlalchemy\orm\session.py", line 2597, in _flush
+    transaction.rollback(_capture_exception=True)
+  File "C:\Users\loktar\.virtualenvs\taskAssignor-ItalQ3UR\lib\site-packages\sqlalchemy\util\langhelpers.py", line 68, in __exit__
+    compat.reraise(exc_type, exc_value, exc_tb)
+  File "C:\Users\loktar\.virtualenvs\taskAssignor-ItalQ3UR\lib\site-packages\sqlalchemy\util\compat.py", line 154, in reraise
+    raise value
+  File "C:\Users\loktar\.virtualenvs\taskAssignor-ItalQ3UR\lib\site-packages\sqlalchemy\orm\session.py", line 2557, in _flush
+    flush_context.execute()
+  File "C:\Users\loktar\.virtualenvs\taskAssignor-ItalQ3UR\lib\site-packages\sqlalchemy\orm\unitofwork.py", line 422, in execute
+    rec.execute(self)
+  File "C:\Users\loktar\.virtualenvs\taskAssignor-ItalQ3UR\lib\site-packages\sqlalchemy\orm\unitofwork.py", line 589, in execute
+    uow,
+  File "C:\Users\loktar\.virtualenvs\taskAssignor-ItalQ3UR\lib\site-packages\sqlalchemy\orm\persistence.py", line 245, in save_obj
+    insert,
+  File "C:\Users\loktar\.virtualenvs\taskAssignor-ItalQ3UR\lib\site-packages\sqlalchemy\orm\persistence.py", line 1138, in _emit_insert_statements
+    statement, params
+  File "C:\Users\loktar\.virtualenvs\taskAssignor-ItalQ3UR\lib\site-packages\sqlalchemy\engine\base.py", line 988, in execute
+    return meth(self, multiparams, params)
+  File "C:\Users\loktar\.virtualenvs\taskAssignor-ItalQ3UR\lib\site-packages\sqlalchemy\sql\elements.py", line 287, in _execute_on_connection
+    return connection._execute_clauseelement(self, multiparams, params)
+  File "C:\Users\loktar\.virtualenvs\taskAssignor-ItalQ3UR\lib\site-packages\sqlalchemy\engine\base.py", line 1107, in _execute_clauseelement
+    distilled_params,
+  File "C:\Users\loktar\.virtualenvs\taskAssignor-ItalQ3UR\lib\site-packages\sqlalchemy\engine\base.py", line 1248, in _execute_context
+    e, statement, parameters, cursor, context
+  File "C:\Users\loktar\.virtualenvs\taskAssignor-ItalQ3UR\lib\site-packages\sqlalchemy\engine\base.py", line 1466, in _handle_dbapi_exception
+    util.raise_from_cause(sqlalchemy_exception, exc_info)
+  File "C:\Users\loktar\.virtualenvs\taskAssignor-ItalQ3UR\lib\site-packages\sqlalchemy\util\compat.py", line 399, in raise_from_cause
+    reraise(type(exception), exception, tb=exc_tb, cause=cause)
+  File "C:\Users\loktar\.virtualenvs\taskAssignor-ItalQ3UR\lib\site-packages\sqlalchemy\util\compat.py", line 153, in reraise
+    raise value.with_traceback(tb)
+  File "C:\Users\loktar\.virtualenvs\taskAssignor-ItalQ3UR\lib\site-packages\sqlalchemy\engine\base.py", line 1244, in _execute_context
+    cursor, statement, parameters, context
+  File "C:\Users\loktar\.virtualenvs\taskAssignor-ItalQ3UR\lib\site-packages\sqlalchemy\engine\default.py", line 550, in do_execute
+    cursor.execute(statement, parameters)
+  File "C:\Users\loktar\.virtualenvs\taskAssignor-ItalQ3UR\lib\site-packages\pymysql\cursors.py", line 170, in execute
+    result = self._query(query)
+  File "C:\Users\loktar\.virtualenvs\taskAssignor-ItalQ3UR\lib\site-packages\pymysql\cursors.py", line 328, in _query
+    conn.query(q)
+  File "C:\Users\loktar\.virtualenvs\taskAssignor-ItalQ3UR\lib\site-packages\pymysql\connections.py", line 517, in query
+    self._affected_rows = self._read_query_result(unbuffered=unbuffered)
+  File "C:\Users\loktar\.virtualenvs\taskAssignor-ItalQ3UR\lib\site-packages\pymysql\connections.py", line 732, in _read_query_result
+    result.read()
+  File "C:\Users\loktar\.virtualenvs\taskAssignor-ItalQ3UR\lib\site-packages\pymysql\connections.py", line 1075, in read
+    first_packet = self.connection._read_packet()
+  File "C:\Users\loktar\.virtualenvs\taskAssignor-ItalQ3UR\lib\site-packages\pymysql\connections.py", line 684, in _read_packet
+    packet.check_error()
+  File "C:\Users\loktar\.virtualenvs\taskAssignor-ItalQ3UR\lib\site-packages\pymysql\protocol.py", line 220, in check_error
+    err.raise_mysql_exception(self._data)
+  File "C:\Users\loktar\.virtualenvs\taskAssignor-ItalQ3UR\lib\site-packages\pymysql\err.py", line 109, in raise_mysql_exception
+    raise errorclass(errno, errval)
+sqlalchemy.exc.InternalError: (pymysql.err.InternalError) (1364, "Field 'r_id' doesn't have a default value")
+[SQL: INSERT INTO task (batch_id, id, info, checked_info, status, checker, time) VALUES (%(batch_id)s, %(id)s, %(info)s, %(checked_info)s, %(status)s, %(checker)s, %(time)s)]
+[parameters: {'batch_id': '05ceb7437d8acfb043125128622bd6b5c624ff04', 'id': 1, 'info': 'aa', 'checked_info': None, 'status': 'unchecked', 'checker': None, 'time': None}]
+(Background on this error at: http://sqlalche.me/e/2j85)
+2019-07-09 17:40:26,749 - taskassignor.view - INFO - new_task_success|assignor_id=1|batch_id=0da9070eff4dee6a62eb2bf41afc10a292866331
+2019-07-09 17:40:41,079 - taskassignor.view - INFO - new_task_success|assignor_id=3|batch_id=b9373041e49bc8bd3f039ae2c01d74bab854ed76
+2019-07-09 17:40:46,639 - taskassignor.view - INFO - new_task_success|assignor_id=3|batch_id=6a9aca19f0cf3d0d4d536d1a4efaa6ac8e6e8a95

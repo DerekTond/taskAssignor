@@ -12,6 +12,7 @@ sqlalchemy = "*"
 flask-restful = "*"
 flask-restless = "*"
 python-dotenv = "*"
+pymysql = "*"
 
 [requires]
 python_version = "3.6"
